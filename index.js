@@ -21,10 +21,11 @@ try {
     core.setOutput('pull_request', JSON.stringify(isPullRequest));
     core.setOutput('branch', branch);
 
-    console.log(github.context.payload);
+    console.log(`Filter: ${filter}`);
+    console.log(JSON.stringify(github.context.payload));
 
-    jq.run(filter, github.context.payload, {
-        input: 'json',
+    jq.run(filter, JSON.stringify(github.context.payload), {
+        input: 'string',
         output: output || 'pretty',
         slurp: Boolean(slurp),
         sort: Boolean(sort)
