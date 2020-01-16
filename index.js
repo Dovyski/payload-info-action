@@ -14,7 +14,7 @@ try {
     const sort              = core.getInput('sort');
 
     const isPullRequest     = github.context.payload.pull_request !== undefined;
-    const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : github.context.payload.ref;
+    const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : github.context.payload.base_ref;
     const filter            = isPullRequest ? filterPullRequest : filterPush;
     
     core.setOutput('pull_request', JSON.stringify(isPullRequest));

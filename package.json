@@ -1,22 +1,26 @@
 {
-  "name": "dummy-ci-action",
+  "name": "payload-info-action",
   "version": "1.0.0",
-  "description": "",
+  "description": "Github Action to extract info from the webhook payload object using the `jq` tool. If also provides the name of the branch this workflow is running on and if it is a pull request or not. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Dovyski/dummy-ci-action.git"
+    "url": "git+https://github.com/Dovyskipayload-info-action.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "github-action",
+    "github",
+    "jq"
+  ],
+  "author": "Fernando Bevilacqua",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Dovyski/dummy-ci-action/issues"
+    "url": "https://github.com/Dovyski/payload-info-action/issues"
   },
-  "homepage": "https://github.com/Dovyski/dummy-ci-action#readme",
+  "homepage": "https://github.com/Dovyski/payload-info-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^2.0.0",
