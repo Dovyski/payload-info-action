@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 const jq = require('node-jq');
 const fs = require('fs');
+const path = require('path');
 
 try {
     const filterPush        = core.getInput('filter_push');
@@ -14,7 +15,7 @@ try {
     const sort              = core.getInput('sort');
 
     const isPullRequest     = github.context.payload.pull_request !== undefined;
-    const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : github.context.payload.base_ref;
+    const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : path.basename(github.context.payload.ref);
     const filter            = isPullRequest ? filterPullRequest : filterPush;
     
     core.setOutput('pull_request', JSON.stringify(isPullRequest));
