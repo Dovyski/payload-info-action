@@ -1,0 +1,45 @@
+name: 'Payload Info'
+description: 'Extracts info from the webhook payload object in Github Actions using jq notation.'
+inputs:
+  filter_push:
+    description: 'Filter to be applied to the webhook payload object in case of a push.'
+    required: true
+    default: '.'
+  filter_pull_request:
+    description: 'Filter to be applied to the webhook payload object in case of a pull request.'
+    required: false
+    default: '.pull_request.'
+  output:
+    description: 'Type of output. It can be "pretty", "json", "compact", or "string".'
+    required: false
+    default: 'pretty'
+  slurp:
+    description: 'If output will be surrounded between [ and ].'
+    required: false
+    default: false
+  sort:
+    description: 'Sort object keys in alphabetical order.'
+    required: false
+    default: false
+  dump:
+    description: 'If the webhook payload for the event that triggered the workflow should be dumped as a JSON file or not.'
+    required: false
+    default: true
+  dump_path:
+    description: 'Path to the JSON payload file to be dumped.'
+    required: false
+    default: 'gh-payload.json'
+  print:
+    description: 'If the webhook payload for the event that triggered the workflow should be output.'
+    required: false
+    default: true
+outputs:
+  value:
+    description: 'Value of the key provided as input.'
+  branch:
+    description: 'Name of the branch related to this workflow.'
+  pull_request:
+    description: 'If this workflow is running on a pull request or not.'
+runs:
+  using: 'node12'
+  main: 'index.js'
