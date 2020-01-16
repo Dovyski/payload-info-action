@@ -42,8 +42,17 @@ If this workflow is running on a pull request or not.
 ## Example usage
 
 ```yml
-uses: Dovyski/payload-info-action@master
-with:
-  filter_push: '.'
-  filter_pull_request: '.pull_request.'
+# Install all required dependencies
+- uses: actions/checkout@v1
+- name: Checkout and Node setup
+    uses: actions/setup-node@v1
+    with:
+    node-version: '12.x'
+- name: Install dependencies
+    run: npm ci
+# Use the action
+- uses: Dovyski/payload-info-action@master
+    with:
+        filter_push: '.'
+        filter_pull_request: '.pull_request.'
 ```
