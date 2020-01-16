@@ -22,7 +22,7 @@ try {
     core.setOutput('branch', branch);
 
     console.log(`Filter: ${filter}`);
-    console.log(JSON.stringify(github.context.payload));
+    console.debug(JSON.stringify(github.context.payload));
 
     jq.run(filter, JSON.stringify(github.context.payload), {
         input: 'string',
