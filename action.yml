@@ -1,5 +1,8 @@
 name: 'Payload Info'
 description: 'Extracts info from the webhook payload object in Github Actions using jq notation.'
+branding:
+  icon: 'scissors'
+  color: 'gray-dark'
 inputs:
   filter_push:
     description: 'Filter to be applied to the webhook payload object in case of a push.'
