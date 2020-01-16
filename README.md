@@ -53,6 +53,6 @@ If this workflow is running on a pull request or not.
 # Use the action
 - uses: Dovyski/payload-info-action@master
     with:
-        filter_push: '.'
-        filter_pull_request: '.pull_request.'
+        filter_push: '.commits[].author.name'
+        filter_pull_request: '.pull_request.commits[].author.name'
 ```
