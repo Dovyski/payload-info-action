@@ -21,6 +21,8 @@ try {
     core.setOutput('pull_request', JSON.stringify(isPullRequest));
     core.setOutput('branch', branch);
 
+    console.log(github.context.payload);
+
     jq.run(filter, github.context.payload, {
         input: 'json',
         output: output || 'pretty',

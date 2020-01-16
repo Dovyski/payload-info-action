@@ -59,6 +59,6 @@ If this workflow is running on a pull request or not, e.g. `"false"`.
 # Use the action
 - uses: Dovyski/payload-info-action@master
   with:
-    filter_push: '.commits'
-    filter_pull_request: '.pull_request.commits'
+    filter_push: '.["commits"]'
+    filter_pull_request: '.["pull_request"].["commits"]'
 ```
