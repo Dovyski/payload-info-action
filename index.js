@@ -21,11 +21,8 @@ try {
     core.setOutput('pull_request', JSON.stringify(isPullRequest));
     core.setOutput('branch', branch);
 
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2);
-
-    jq.run(filter, payload, {
-        input: 'string',
+    jq.run(filter, github.context.payload, {
+        input: 'json',
         output: output || 'pretty',
         slurp: Boolean(slurp),
         sort: Boolean(sort)
@@ -36,6 +33,9 @@ try {
     .catch((err) => {
         core.setFailed(err);
     });
+        
+    // Get the JSON webhook payload for the event that triggered the workflow
+    const payload = JSON.stringify(github.context.payload, undefined, 2);
 
     if(shouldPrint) {
         console.log(`Payload: ${payload}`);
