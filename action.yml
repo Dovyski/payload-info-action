@@ -12,6 +12,10 @@ inputs:
     description: 'Filter to be applied to the webhook payload object in case of a pull request.'
     required: false
     default: '.pull_request.'
+  filter_prefix:
+    description: 'String to be prefixed to all filters.'
+    required: false
+    default: '.[]'
   output:
     description: 'Type of output. It can be "pretty", "json", "compact", or "string".'
     required: false

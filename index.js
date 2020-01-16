@@ -7,6 +7,7 @@ const path = require('path');
 try {
     const filterPush        = core.getInput('filter_push');
     const filterPullRequest = core.getInput('filter_pull_request');
+    const filterPrefix      = core.getInput('filter_prefix');
     const shouldDump        = core.getInput('dump');
     const dumpPath          = core.getInput('dump_path');
     const shouldPrint       = core.getInput('print');
@@ -16,13 +17,12 @@ try {
 
     const isPullRequest     = github.context.payload.pull_request !== undefined;
     const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : path.basename(github.context.payload.ref);
-    const filter            = isPullRequest ? filterPullRequest : filterPush;
+    const filter            = filterPrefix + (isPullRequest ? filterPullRequest : filterPush);
     
     core.setOutput('pull_request', JSON.stringify(isPullRequest));
     core.setOutput('branch', branch);
 
     console.log(`Filter: ${filter}`);
-    console.debug(JSON.stringify(github.context.payload));
 
     jq.run(filter, JSON.stringify(github.context.payload), {
         input: 'string',
@@ -41,7 +41,9 @@ try {
     const payload = JSON.stringify(github.context.payload, undefined, 2);
 
     if(shouldPrint) {
-        console.log(`Payload: ${payload}`);
+        core.startGroup('Payload');
+        console.log(payload);
+        core.endGroup()
     }
 
     if(shouldDump) {
