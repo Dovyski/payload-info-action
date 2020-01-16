@@ -18,7 +18,7 @@ jobs:
       uses: ./ # Uses an action in the root directory
       id: extract
       with:
-        filter_push: '.commits'
+        filter_push: '.[].commits'
         filter_pull_request: '.pull_request.commits'
     # Use the output from the `infos` step
     - name: Show output
