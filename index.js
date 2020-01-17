@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const jq = require('node-jq');
+const jq = require('jq-web');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,10 +11,7 @@ try {
     const shouldDump        = core.getInput('dump');
     const dumpPath          = core.getInput('dump_path');
     const shouldPrint       = core.getInput('print');
-    const output            = core.getInput('output');
-    const slurp             = core.getInput('slurp');
-    const sort              = core.getInput('sort');
-
+    
     const isPullRequest     = github.context.payload.pull_request !== undefined;
     const branch            = isPullRequest ? github.context.payload.pull_request.head.ref : path.basename(github.context.payload.ref);
     const filter            = filterPrefix + (isPullRequest ? filterPullRequest : filterPush);
@@ -24,12 +21,7 @@ try {
 
     console.log(`Filter: ${filter}`);
 
-    jq.run(filter, JSON.stringify(github.context.payload), {
-        input: 'string',
-        output: output || 'pretty',
-        slurp: Boolean(slurp),
-        sort: Boolean(sort)
-    })
+    jq.promised.json(github.context.payload, filter)
     .then((output) => {
         core.setOutput('value', output);
     })

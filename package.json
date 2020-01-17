@@ -24,6 +24,6 @@
   "dependencies": {
     "@actions/core": "^1.2.0",
     "@actions/github": "^2.0.0",
-    "node-jq": "^1.11.0"
+    "jq-web": "^0.5.1"
   }
 }

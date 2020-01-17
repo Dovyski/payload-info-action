@@ -21,7 +21,7 @@ jobs:
         filter_push: '.commits[].author'
         filter_pull_request: '.pull_request.commits'
     # Use the output from the `infos` step
-    - name: Show output
+    - name: Show extracted info
       run: |
         echo "value: ${{ steps.extract.outputs.value }}"
         echo "branch: ${{ steps.extract.outputs.branch }}"

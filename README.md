@@ -1,6 +1,6 @@
 # Payload Info
 
-This action extracts info from the webhook payload object in Github Actions using the `jq` tool. If also provides the name of the branch this workflow is running on and if it is a pull request or not.
+This action extracts info from the webhook payload object in Github Actions using filters based on the `jq` tool. It also provides the name of the branch this workflow is running on and if it is a pull request or not.
 
 Check out the [`.github/workflows/main.yml`](https://github.com/Dovyski/payload-info-action/blob/master/.github/workflows/main.yml) file to see this action working.
 
@@ -16,14 +16,8 @@ Filter to be applied to the webhook payload object in case of a pull request. De
 
 Learn more about filters at the [jq manual](https://stedolan.github.io/jq/manual/#Basicfilters).
 
-### `output`
-Type of output. It can be `"pretty"`, `"json"`, `"compact"`, or `"string"`. Default `"pretty"`.
-
-### `slurp`
-If the output should be surrounded by `[` and `]`. Default `false`.
-
-### `sort`
-Sort object keys in alphabetical order. Default `false`.
+### `filter_prefix`
+String to be prefixed to all filters. Default `".[]"`.
 
 ### `dump`
 If the webhook payload should be dumped as a JSON file or not. Default `true`.
@@ -48,15 +42,6 @@ If this workflow is running on a pull request or not, e.g. `"false"`.
 ## Example usage
 
 ```yml
-# Install all required dependencies
-- uses: actions/checkout@v1
-- name: Checkout and Node setup
-    uses: actions/setup-node@v1
-    with:
-    node-version: '12.x'
-- name: Install dependencies
-    run: npm ci
-# Use the action
 - uses: Dovyski/payload-info-action@master
   with:
     filter_push: '.commits[].author'
