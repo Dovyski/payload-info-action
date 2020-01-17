@@ -23,7 +23,7 @@ try {
 
     jq.promised.json(github.context.payload, filter)
     .then((output) => {
-        core.setOutput('value', output);
+        core.setOutput('value', JSON.stringify(output));
     })
     .catch((err) => {
         core.setFailed(err);
