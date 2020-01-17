@@ -15,7 +15,7 @@ inputs:
   filter_prefix:
     description: 'String to be prefixed to all filters.'
     required: false
-    default: '.[]'
+    default: ''
   output:
     description: 'Type of output. It can be "pretty", "json", "compact", or "string".'
     required: false
