@@ -17,6 +17,7 @@ jobs:
     # Use the output from the `infos` step
     - name: Show extracted info
       run: |
+        echo "Infos"
         echo "value: ${{ steps.extract.outputs.value }}"
         echo "branch: ${{ steps.extract.outputs.branch }}"
         echo "pull_request: ${{ steps.extract.outputs.pull_request }}"
