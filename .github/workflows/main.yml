@@ -8,12 +8,6 @@ jobs:
     name: A job to test the action
     steps:
     - uses: actions/checkout@v1
-    - name: Checkout and Node setup
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install dependencies
-      run: npm ci
     - name: Extract info
       uses: ./ # Uses an action in the root directory
       id: extract
