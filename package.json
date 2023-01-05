@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/Dovyski/payload-info-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.0",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^2.0.0",
     "jq-web": "^0.5.1"
   }
