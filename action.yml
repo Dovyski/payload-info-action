@@ -48,5 +48,5 @@ outputs:
   pull_request:
     description: 'If this workflow is running on a pull request or not.'
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'index.js'
